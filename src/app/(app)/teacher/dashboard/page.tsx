@@ -119,9 +119,9 @@ export default function TeacherDashboardPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {/* Left Column */}
-        <div className="lg:col-span-1">
+        <div className="md:col-span-1">
           <Card className="h-full bg-primary text-primary-foreground">
             <CardHeader>
               <CardTitle>Lecturer Performance</CardTitle>
@@ -162,8 +162,8 @@ export default function TeacherDashboardPage() {
         </div>
 
         {/* Right Column */}
-        <div className="grid gap-6 lg:col-span-2">
-            <div className="grid grid-cols-2 gap-6 xl:grid-cols-4">
+        <div className="grid gap-6 md:col-span-2">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-sm font-medium">
@@ -242,8 +242,8 @@ export default function TeacherDashboardPage() {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="md:col-span-2">
             <Card>
                 <CardHeader>
                 <CardTitle>My Assigned Courses</CardTitle>
@@ -285,7 +285,7 @@ export default function TeacherDashboardPage() {
                 </CardContent>
             </Card>
         </div>
-        <div className="lg:col-span-1">
+        <div className="md:col-span-1">
             <Card>
                 <CardHeader>
                     <CardTitle>My Agenda</CardTitle>
@@ -315,4 +315,3 @@ export default function TeacherDashboardPage() {
     </div>
   );
 }
-
