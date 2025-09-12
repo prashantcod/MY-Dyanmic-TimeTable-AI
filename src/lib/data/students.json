@@ -1,5 +1,4 @@
 
-
 {
   "studentGroups": [
     {
@@ -352,7 +351,7 @@
         { "rollNumber": "BED3Y031", "name": "Student 31", "email": "student.31@university.edu", "abcId": "22-1560-1006-031" },
         { "rollNumber": "BED3Y032", "name": "Student 32", "email": "student.32@university.edu", "abcId": "22-1560-1006-032" },
         { "rollNumber": "BED3Y033", "name": "Student 33", "email": "student.33@university.edu", "abcId": "22-1560-1006-033" },
-        { "rollNumber": "BED3Y034", "name": "Student 34", "email": "student.34@university.edu", "abcId": "22-1560-1G06-034" },
+        { "rollNumber": "BED3Y034", "name": "Student 34", "email": "student.34@university.edu", "abcId": "22-1560-1006-034" },
         { "rollNumber": "BED3Y035", "name": "Student 35", "email": "student.35@university.edu", "abcId": "22-1560-1006-035" },
         { "rollNumber": "BED3Y036", "name": "Student 36", "email": "student.36@university.edu", "abcId": "22-1560-1006-036" },
         { "rollNumber": "BED3Y037", "name": "Student 37", "email": "student.37@university.edu", "abcId": "22-1560-1006-037" },
@@ -505,7 +504,7 @@
         { "rollNumber": "FYUP1S091", "name": "Student 91", "email": "student.91@university.edu", "abcId": "24-1560-1008-091" },
         { "rollNumber": "FYUP1S092", "name": "Student 92", "email": "student.92@university.edu", "abcId": "24-1560-1008-092" },
         { "rollNumber": "FYUP1S093", "name": "Student 93", "email": "student.93@university.edu", "abcId": "24-1560-1008-093" },
-        { "rollNumber": "FYUP1S094", "name": "Student 94", "email": "student.94@university.edu", "abcId": "24-1G60-1008-094" },
+        { "rollNumber": "FYUP1S094", "name": "Student 94", "email": "student.94@university.edu", "abcId": "24-1560-1008-094" },
         { "rollNumber": "FYUP1S095", "name": "Student 95", "email": "student.95@university.edu", "abcId": "24-1560-1008-095" },
         { "rollNumber": "FYUP1S096", "name": "Student 96", "email": "student.96@university.edu", "abcId": "24-1560-1008-096" },
         { "rollNumber": "FYUP1S097", "name": "Student 97", "email": "student.97@university.edu", "abcId": "24-1560-1008-097" },
@@ -519,7 +518,7 @@
         { "rollNumber": "FYUP1S105", "name": "Student 105", "email": "student.105@university.edu", "abcId": "24-1560-1008-105" },
         { "rollNumber": "FYUP1S106", "name": "Student 106", "email": "student.106@university.edu", "abcId": "24-1560-1008-106" },
         { "rollNumber": "FYUP1S107", "name": "Student 107", "email": "student.107@university.edu", "abcId": "24-1560-1008-107" },
-        { "rollNumber": "FYUP1S0108", "name": "Student 108", "email": "student.108@university.edu", "abcId": "24-1560-1008-108" },
+        { "rollNumber": "FYUP1S108", "name": "Student 108", "email": "student.108@university.edu", "abcId": "24-1560-1008-108" },
         { "rollNumber": "FYUP1S109", "name": "Student 109", "email": "student.109@university.edu", "abcId": "24-1560-1008-109" },
         { "rollNumber": "FYUP1S110", "name": "Student 110", "email": "student.110@university.edu", "abcId": "24-1560-1008-110" },
         { "rollNumber": "FYUP1S111", "name": "Student 111", "email": "student.111@university.edu", "abcId": "24-1560-1008-111" },
