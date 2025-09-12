@@ -1,0 +1,71 @@
+
+{
+  "materials": [
+    {
+      "id": "M001",
+      "courseCode": "CSE101",
+      "courseName": "Intro to Programming",
+      "facultyName": "Dr. Alan Turing",
+      "title": "Module 1: Introduction to Python",
+      "fileUrl": "/materials/CSE101_Module1.pdf",
+      "credits": 4,
+      "classesToComplete": 8,
+      "daysToComplete": 14
+    },
+    {
+      "id": "M002",
+      "courseCode": "CSE101",
+      "courseName": "Intro to Programming",
+      "facultyName": "Dr. Alan Turing",
+      "title": "Module 2: Control Flow and Functions",
+      "fileUrl": "/materials/CSE101_Module2.pdf",
+      "credits": 4,
+      "classesToComplete": 10,
+      "daysToComplete": 18
+    },
+    {
+      "id": "M003",
+      "courseCode": "PHY101",
+      "courseName": "Introductory Physics",
+      "facultyName": "Dr. Marie Curie",
+      "title": "Unit 1: Classical Mechanics",
+      "fileUrl": "/materials/PHY101_Unit1.pdf",
+      "credits": 3,
+      "classesToComplete": 12,
+      "daysToComplete": 20
+    },
+    {
+      "id": "M004",
+      "courseCode": "MATH101",
+      "courseName": "Calculus I",
+      "facultyName": "Prof. Richard Feynman",
+      "title": "Chapter 1: Limits and Continuity",
+      "fileUrl": "/materials/MATH101_Chapter1.pdf",
+      "credits": 4,
+      "classesToComplete": 15,
+      "daysToComplete": 25
+    },
+    {
+      "id": "M005",
+      "courseCode": "CSE201",
+      "courseName": "Data Structures",
+      "facultyName": "Dr. Grace Hopper",
+      "title": "Module 1: Arrays and Linked Lists",
+      "fileUrl": "/materials/CSE201_Module1.pdf",
+      "credits": 4,
+      "classesToComplete": 8,
+      "daysToComplete": 14
+    },
+    {
+      "id": "M006",
+      "courseCode": "ECE205",
+      "courseName": "Digital Circuits",
+      "facultyName": "Prof. Ada Lovelace",
+      "title": "Module 1: Logic Gates and Boolean Algebra",
+      "fileUrl": "/materials/ECE205_Module1.pdf",
+      "credits": 4,
+      "classesToComplete": 9,
+      "daysToComplete": 16
+    }
+  ]
+}

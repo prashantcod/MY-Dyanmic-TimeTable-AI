@@ -69,8 +69,8 @@ export default function StudentLayout({children}: {children: React.ReactNode}) {
                     </SidebarMenuButton>
                 </SidebarMenuItem>
                  <SidebarMenuItem>
-                    <SidebarMenuButton href="/student/dashboard" asChild tooltip="View Materials">
-                        <Link href="/student/dashboard">
+                    <SidebarMenuButton href="/student/materials" asChild tooltip="View Materials">
+                        <Link href="/student/materials">
                             <FileText />
                             Materials
                         </Link>
