@@ -28,11 +28,22 @@ import { useDataStore } from '@/lib/data-store';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
-import { format } from 'date-fns';
+import { format, subDays } from 'date-fns';
 import { UserCheck } from 'lucide-react';
 
+// A simple hashing function to create pseudo-random but deterministic numbers from a string
+const simpleHash = (str: string) => {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+};
+
 export default function StudentAttendancePage() {
-  const { loggedInStudent, studentGroups, courses, attendance } = useDataStore();
+  const { loggedInStudent, studentGroups, courses, faculty } = useDataStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -48,25 +59,32 @@ export default function StudentAttendancePage() {
     if (!loggedInStudent || !myCourses) return [];
 
     return myCourses.map(course => {
-      const courseAttendance = attendance.filter(
-        a => a.studentRollNumber === loggedInStudent.rollNumber && a.courseCode === course.code
-      );
-      
-      const absentCount = courseAttendance.filter(a => a.status === 'Absent').length;
+      // Simulate varied absences for demo purposes, based on course code
+      const hash = simpleHash(course.code + loggedInStudent.rollNumber);
+      const absentCount = hash % 5; // Simulate 0 to 4 absences
       
       // Make total classes dynamic to create variation
       const baseTotalClasses = 25;
       const totalClasses = baseTotalClasses + (course.code.includes('L') ? 10 : 0) + (course.credits * 2);
-      const presentCount = totalClasses - absentCount;
+      const presentCount = Math.max(0, totalClasses - absentCount);
       const percentage = totalClasses > 0 ? (presentCount / totalClasses) * 100 : 100;
+      
+      // Find a suitable faculty member for this course
+      const courseFaculty = faculty.find(f => f.expertise.includes(course.code));
+
+      // Generate mock absence records for the dialog
+      const absentRecords = Array.from({ length: absentCount }, (_, i) => ({
+        date: subDays(new Date(), (hash % (i + 1) * 7) + 5).toISOString(), // Generate varied past dates
+        facultyName: courseFaculty?.name || 'N/A',
+      }));
 
       return {
         ...course,
         percentage: Math.max(0, Math.round(percentage)),
-        absentRecords: courseAttendance.filter(a => a.status === 'Absent'),
+        absentRecords: absentRecords,
       };
     });
-  }, [loggedInStudent, myCourses, attendance]);
+  }, [loggedInStudent, myCourses, faculty]);
 
   if (!loggedInStudent || !myGroup) {
     return (
