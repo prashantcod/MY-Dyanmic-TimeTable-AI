@@ -74,8 +74,9 @@ export default function TeacherDashboardPage() {
   }, [loggedInTeacher, router]);
 
   const assignedCourses = useMemo(() => {
+    if (!loggedInTeacher) return [];
     return courses.filter(course =>
-      loggedInTeacher?.expertise.includes(course.code)
+      loggedInTeacher.expertise.includes(course.code)
     );
   }, [courses, loggedInTeacher]);
 
@@ -211,8 +212,8 @@ export default function TeacherDashboardPage() {
                         <YAxis tickFormatter={(value) => `${value}h`} tickLine={false} axisLine={false} />
                         <Tooltip contentStyle={{ borderRadius: 'var(--radius)', border: '1px solid hsl(var(--border))' }}/>
                         <Legend />
-                        <Line type="monotone" dataKey="thisMonth" stroke="var(--color-chart-1)" strokeWidth={2} name="This Month" />
-                        <Line type="monotone" dataKey="lastMonth" stroke="var(--color-chart-2)" strokeWidth={2} name="Last Month" />
+                        <Line type="monotone" dataKey="thisMonth" stroke="var(--color-chart-1)" strokeWidth={2} name="This Month" dot={{ r: 4 }} activeDot={{ r: 6 }} />
+                        <Line type="monotone" dataKey="lastMonth" stroke="var(--color-chart-2)" strokeWidth={2} name="Last Month" dot={{ r: 4 }} activeDot={{ r: 6 }} />
                         </LineChart>
                     </ResponsiveContainer>
                 </CardContent>
