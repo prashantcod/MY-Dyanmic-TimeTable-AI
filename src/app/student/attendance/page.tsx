@@ -52,9 +52,13 @@ export default function StudentAttendancePage() {
         a => a.studentRollNumber === loggedInStudent.rollNumber && a.courseCode === course.code
       );
       
-      const totalClasses = 20; // Assuming a fixed number of total classes for demo
-      const presentCount = totalClasses - courseAttendance.filter(a => a.status === 'Absent').length;
-      const percentage = (presentCount / totalClasses) * 100;
+      const absentCount = courseAttendance.filter(a => a.status === 'Absent').length;
+      
+      // Make total classes dynamic based on course and absences to create variation
+      const baseTotalClasses = 20;
+      const totalClasses = baseTotalClasses + (course.code.includes('L') ? 5 : 0) - absentCount;
+      const presentCount = totalClasses - absentCount > 0 ? totalClasses - absentCount : 0;
+      const percentage = totalClasses > 0 ? (presentCount / totalClasses) * 100 : 100;
 
       return {
         ...course,
