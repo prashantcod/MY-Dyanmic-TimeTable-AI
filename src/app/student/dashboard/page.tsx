@@ -127,9 +127,9 @@ export default function StudentDashboardPage() {
             <p className="text-sm text-muted-foreground">
                 ABC ID: {loggedInStudent?.abcId || 'N/A'}
             </p>
-            <p className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground">
                 Semester Credits: <Badge variant="secondary">{totalCredits}</Badge>
-            </p>
+            </div>
           </CardContent>
         </Card>
         
