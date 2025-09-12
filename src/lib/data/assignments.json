@@ -1,0 +1,50 @@
+
+{
+  "assignments": [
+    {
+      "id": "A001",
+      "courseCode": "CSE101",
+      "courseName": "Intro to Programming",
+      "facultyName": "Dr. Alan Turing",
+      "title": "Assignment 1: Basic Algorithms",
+      "points": 100,
+      "dueDate": "2024-08-15"
+    },
+    {
+      "id": "A002",
+      "courseCode": "PHY101",
+      "courseName": "Introductory Physics",
+      "facultyName": "Dr. Marie Curie",
+      "title": "Lab Report 1: Kinematics",
+      "points": 50,
+      "dueDate": "2024-08-20"
+    },
+    {
+      "id": "A003",
+      "courseCode": "MATH101",
+      "courseName": "Calculus I",
+      "facultyName": "Prof. Richard Feynman",
+      "title": "Problem Set 1: Limits and Derivatives",
+      "points": 100,
+      "dueDate": "2024-08-22"
+    },
+    {
+      "id": "A004",
+      "courseCode": "CSE201",
+      "courseName": "Data Structures",
+      "facultyName": "Dr. Grace Hopper",
+      "title": "Assignment 2: Linked Lists",
+      "points": 150,
+      "dueDate": "2024-09-01"
+    },
+    {
+      "id": "A005",
+      "courseCode": "ECE205",
+      "courseName": "Digital Circuits",
+      "facultyName": "Prof. Ada Lovelace",
+      "title": "Project 1: 4-bit Adder Design",
+      "points": 200,
+      "dueDate": "2024-09-10"
+    }
+  ]
+}

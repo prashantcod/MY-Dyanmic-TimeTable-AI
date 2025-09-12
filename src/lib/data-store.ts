@@ -4,11 +4,13 @@ import { courses as initialCourses } from './data/courses.json';
 import { rooms as initialRooms } from './data/rooms.json';
 import { faculty as initialFaculty, Faculty } from './data/faculty.json';
 import { studentGroups as initialStudentGroups, StudentGroup as BaseStudentGroup, Student } from './data/students.json';
+import { assignments as initialAssignments } from './data/assignments.json';
 import { ScheduleEntry } from '@/app/api/timetable/route';
 
 export type Course = (typeof initialCourses)[0] & { category?: string };
 export type Room = (typeof initialRooms)[0];
 export type StudentGroup = BaseStudentGroup & { program: string };
+export type Assignment = (typeof initialAssignments)[0];
 
 
 export type LoggedInStudent = Student & {
@@ -47,6 +49,7 @@ type DataStore = {
     rooms: Room[];
     faculty: Faculty[];
     studentGroups: StudentGroup[];
+    assignments: Assignment[];
     leaveRequests: LeaveRequest[];
     notifications: Notification[];
     timetable: ScheduleEntry[];
@@ -77,6 +80,7 @@ let dataStore: DataStore = {
             email: `${student.name.toLowerCase().replace(/\s/g, '.')}@university.edu`
         }))
     })) as StudentGroup[],
+    assignments: initialAssignments,
     timetable: [],
     loggedInStudent: null,
     recentGenerations: [

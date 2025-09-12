@@ -4,7 +4,8 @@ import {
   LayoutDashboard,
   BookOpen,
   Calendar,
-  FileText
+  FileText,
+  ClipboardCheck,
 } from 'lucide-react';
 
 import {
@@ -56,6 +57,14 @@ export default function StudentLayout({children}: {children: React.ReactNode}) {
                         <Link href="/student/dashboard">
                             <Calendar />
                             My Timetable
+                        </Link>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <SidebarMenuButton href="/student/assignments" asChild tooltip="View Assignments">
+                        <Link href="/student/assignments">
+                            <ClipboardCheck />
+                            Assignments
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
