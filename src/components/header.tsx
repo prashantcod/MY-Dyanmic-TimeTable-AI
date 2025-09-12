@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 
 import {Button} from '@/components/ui/button';
@@ -49,7 +50,7 @@ export function Header() {
                 <Link href="/dashboard">Admin</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/teacher/dashboard">Teacher</Link>
+                <Link href="/teacher/login">Teacher</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/student/login">Student</Link>

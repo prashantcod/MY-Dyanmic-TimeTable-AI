@@ -3,7 +3,10 @@
   "faculty": [
     {
       "id": "F001",
+      "employeeId": "EMP001",
       "name": "Dr. Alan Turing",
+      "email": "alan.turing@university.edu",
+      "department": "CSE",
       "expertise": ["CSE101", "CSE101L", "CSE201", "CSE201L", "CSE301"],
       "availability": {
         "Monday": ["09:00-10:00", "10:00-11:00", "11:00-12:00", "14:00-15:00"],
@@ -15,7 +18,10 @@
     },
     {
       "id": "F002",
+      "employeeId": "EMP002",
       "name": "Dr. Grace Hopper",
+      "email": "grace.hopper@university.edu",
+      "department": "CSE",
       "expertise": ["CSE201", "CSE201L", "PHY101", "ITC402"],
       "availability": {
         "Monday": ["11:00-12:00", "12:00-13:00"],
@@ -27,7 +33,10 @@
     },
     {
       "id": "F003",
+      "employeeId": "EMP003",
       "name": "Prof. Ada Lovelace",
+      "email": "ada.lovelace@university.edu",
+      "department": "ECE",
       "expertise": ["ECE101", "ECE101L", "CHEM101", "ECE205"],
       "availability": {
         "Monday": ["14:00-15:00", "15:00-16:00"],
@@ -39,7 +48,10 @@
     },
     {
       "id": "F004",
+      "employeeId": "EMP004",
       "name": "Prof. John Dewey",
+      "email": "john.dewey@university.edu",
+      "department": "B.Ed",
       "expertise": ["BEDU301", "MECH210", "BEDU402"],
       "availability": {
         "Monday": ["09:00-10:00", "10:00-11:00"],
@@ -51,7 +63,10 @@
     },
      {
       "id": "F005",
+      "employeeId": "EMP005",
       "name": "Dr. Marie Curie",
+      "email": "marie.curie@university.edu",
+      "department": "Physics",
       "expertise": ["PHY101", "CHEM101"],
       "availability": {
         "Monday": ["10:00-11:00", "11:00-12:00"],
@@ -63,7 +78,10 @@
     },
     {
       "id": "F006",
+      "employeeId": "EMP006",
       "name": "Prof. Richard Feynman",
+      "email": "richard.feynman@university.edu",
+      "department": "Physics",
       "expertise": ["MATH101", "PHY101"],
       "availability": {
         "Monday": ["14:00-15:00", "15:00-16:00"],

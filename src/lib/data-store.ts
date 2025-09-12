@@ -2,7 +2,7 @@
 
 import { courses as initialCourses } from './data/courses.json';
 import { rooms as initialRooms } from './data/rooms.json';
-import { faculty as initialFaculty, Faculty } from './data/faculty.json';
+import { faculty as initialFaculty, Faculty as BaseFaculty } from './data/faculty.json';
 import { studentGroups as initialStudentGroups, StudentGroup as BaseStudentGroup, Student as BaseStudent } from './data/students.json';
 import { assignments as initialAssignments } from './data/assignments.json';
 import { exams as initialExams } from './data/exams.json';
@@ -12,6 +12,7 @@ import { ScheduleEntry } from '@/app/api/timetable/route';
 
 export type Course = (typeof initialCourses)[0] & { category?: string };
 export type Room = (typeof initialRooms)[0];
+export type Faculty = BaseFaculty & { employeeId: string; email: string; department: string };
 export type Student = BaseStudent & { abcId?: string };
 export type StudentGroup = BaseStudentGroup & { program: string; students?: Student[] };
 export type Assignment = (typeof initialAssignments)[0];
@@ -23,6 +24,8 @@ export type AttendanceRecord = (typeof initialAttendance)[0];
 export type LoggedInStudent = Student & {
     groupName: string;
 };
+
+export type LoggedInTeacher = Faculty;
 
 export type RecentGeneration = {
     id: string;
@@ -65,7 +68,8 @@ type DataStore = {
     timetable: ScheduleEntry[];
     recentGenerations: RecentGeneration[];
     loggedInStudent: LoggedInStudent | null;
-    addFaculty: (faculty: Omit<Faculty, 'id'>) => void;
+    loggedInTeacher: LoggedInTeacher | null;
+    addFaculty: (faculty: Omit<Faculty, 'id' | 'availability' | 'expertise'>) => void;
     addStudentGroup: (group: Omit<StudentGroup, 'id'>) => void;
     addStudentToGroup: (groupId: string, student: Student) => void;
     addLeaveRequest: (request: Omit<LeaveRequest, 'id' | 'status'>) => void;
@@ -75,13 +79,14 @@ type DataStore = {
     setTimetable: (newTimetable: ScheduleEntry[]) => void;
     updateRecentGeneration: (id: string, updates: Partial<Omit<RecentGeneration, 'id' | 'date'>>) => void;
     setLoggedInStudent: (student: LoggedInStudent | null) => void;
+    setLoggedInTeacher: (teacher: LoggedInTeacher | null) => void;
 };
 
 // In-memory data store
 let dataStore: DataStore = {
     courses: initialCourses,
     rooms: initialRooms,
-    faculty: [...initialFaculty],
+    faculty: [...initialFaculty] as Faculty[],
     studentGroups: [...initialStudentGroups] as StudentGroup[],
     assignments: initialAssignments,
     exams: initialExams,
@@ -89,6 +94,7 @@ let dataStore: DataStore = {
     attendance: initialAttendance,
     timetable: [],
     loggedInStudent: null,
+    loggedInTeacher: null,
     recentGenerations: [
          {
             id: 'GEN-001',
@@ -200,7 +206,12 @@ let dataStore: DataStore = {
         }
     ],
     addFaculty: (faculty) => {
-        const newFaculty = { ...faculty, id: crypto.randomUUID() };
+        const newFaculty: Faculty = { 
+            ...faculty, 
+            id: `F${String(dataStore.faculty.length + 1).padStart(3, '0')}`,
+            expertise: [],
+            availability: { Monday: [], Tuesday: [], Wednesday: [], Thursday: [], Friday: [] }
+        };
         dataStore.faculty.push(newFaculty);
     },
     addStudentGroup: (group) => {
@@ -282,6 +293,9 @@ let dataStore: DataStore = {
     setLoggedInStudent: (student) => {
         dataStore.loggedInStudent = student;
     },
+    setLoggedInTeacher: (teacher) => {
+        dataStore.loggedInTeacher = teacher;
+    }
 };
 
 export const useDataStore = () => dataStore;

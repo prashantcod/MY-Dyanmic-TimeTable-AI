@@ -1,0 +1,167 @@
+
+'use client';
+import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from '@/hooks/use-toast';
+import { useDataStore } from '@/lib/data-store';
+import { useRouter } from 'next/navigation';
+
+export default function TeacherLoginPage() {
+    const [loginEmail, setLoginEmail] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
+    const [registerName, setRegisterName] = useState('');
+    const [registerEmail, setRegisterEmail] = useState('');
+    const [registerPassword, setRegisterPassword] = useState('');
+    const [registerEmployeeId, setRegisterEmployeeId] = useState('');
+    const [registerDepartment, setRegisterDepartment] = useState('');
+    const { toast } = useToast();
+    const { addFaculty, faculty: allFaculty, setLoggedInTeacher } = useDataStore();
+    const router = useRouter();
+
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if (!loginEmail || !loginPassword) {
+             toast({
+                variant: 'destructive',
+                title: "Login Failed",
+                description: "Please enter your email and password.",
+            });
+            return;
+        }
+
+        const foundTeacher = allFaculty.find(f => f.email?.toLowerCase() === loginEmail.toLowerCase());
+        
+        if (foundTeacher) {
+            // In a real app, you'd check the password here.
+            setLoggedInTeacher(foundTeacher);
+            toast({
+                title: "Login Successful",
+                description: `Welcome back, ${foundTeacher.name}! Redirecting...`,
+            });
+            router.push('/teacher/dashboard');
+        } else {
+            toast({
+                variant: 'destructive',
+                title: "Login Failed",
+                description: "No teacher found with that email. Please register first.",
+            });
+        }
+    };
+
+    const handleRegister = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (registerName && registerEmail && registerPassword && registerEmployeeId && registerDepartment) {
+            
+            const newFaculty = {
+                name: registerName,
+                email: registerEmail,
+                employeeId: registerEmployeeId,
+                department: registerDepartment,
+            };
+
+            addFaculty(newFaculty);
+
+            toast({
+                title: "Registration Successful",
+                description: "You can now log in with your new account.",
+            });
+            
+            // Switch to the login tab.
+            const loginTabTrigger = document.querySelector('button[data-state="inactive"][value="login"]') as HTMLButtonElement | null;
+            loginTabTrigger?.click();
+
+        } else {
+             toast({
+                variant: 'destructive',
+                title: "Registration Failed",
+                description: "Please fill out all fields.",
+            });
+        }
+    };
+
+  return (
+     <div className="flex min-h-screen flex-col items-center justify-center bg-background">
+      <Tabs defaultValue="login" className="w-[400px]">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="login">Login</TabsTrigger>
+          <TabsTrigger value="register">Register</TabsTrigger>
+        </TabsList>
+        <TabsContent value="login">
+          <form onSubmit={handleLogin}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Teacher Login</CardTitle>
+                <CardDescription>
+                  Enter your credentials to access your dashboard.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="login-email">Email</Label>
+                  <Input id="login-email" type="email" placeholder="faculty@university.edu" value={loginEmail} onChange={e => setLoginEmail(e.target.value)} required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="login-password">Password</Label>
+                  <Input id="login-password" type="password" value={loginPassword} onChange={e => setLoginPassword(e.target.value)} required />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button type="submit" className="w-full">Sign In</Button>
+              </CardFooter>
+            </Card>
+          </form>
+        </TabsContent>
+        <TabsContent value="register">
+          <form onSubmit={handleRegister}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Register</CardTitle>
+                <CardDescription>
+                  Create a new faculty account.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="register-name">Full Name</Label>
+                  <Input id="register-name" placeholder="Dr. Jane Doe" value={registerName} onChange={e => setRegisterName(e.target.value)} required />
+                </div>
+                 <div className="space-y-2">
+                  <Label htmlFor="register-department">Department</Label>
+                  <Input id="register-department" placeholder="e.g. Computer Science" value={registerDepartment} onChange={e => setRegisterDepartment(e.target.value)} required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="register-email">Email</Label>
+                  <Input id="register-email" type="email" placeholder="jane.doe@university.edu" value={registerEmail} onChange={e => setRegisterEmail(e.target.value)} required />
+                </div>
+                 <div className="space-y-2">
+                  <Label htmlFor="register-employee-id">Employee ID</Label>
+                  <Input id="register-employee-id" placeholder="e.g. EMP12345" value={registerEmployeeId} onChange={e => setRegisterEmployeeId(e.target.value)} required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="register-password">Password</Label>
+                  <Input id="register-password" type="password" value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} required />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button type="submit" className="w-full">Create Account</Button>
+              </CardFooter>
+            </Card>
+          </form>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
