@@ -54,15 +54,15 @@ export default function StudentAttendancePage() {
       
       const absentCount = courseAttendance.filter(a => a.status === 'Absent').length;
       
-      // Make total classes dynamic based on course and absences to create variation
-      const baseTotalClasses = 20;
-      const totalClasses = baseTotalClasses + (course.code.includes('L') ? 5 : 0) - absentCount;
-      const presentCount = totalClasses - absentCount > 0 ? totalClasses - absentCount : 0;
+      // Make total classes dynamic to create variation
+      const baseTotalClasses = 25;
+      const totalClasses = baseTotalClasses + (course.code.includes('L') ? 10 : 0) + (course.credits * 2);
+      const presentCount = totalClasses - absentCount;
       const percentage = totalClasses > 0 ? (presentCount / totalClasses) * 100 : 100;
 
       return {
         ...course,
-        percentage: Math.round(percentage),
+        percentage: Math.max(0, Math.round(percentage)),
         absentRecords: courseAttendance.filter(a => a.status === 'Absent'),
       };
     });
