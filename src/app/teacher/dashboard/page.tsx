@@ -138,7 +138,7 @@ export default function TeacherDashboardPage() {
                     </AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
-                        <p className="text-5xl font-bold">91.2%</p>
+                        
                         <p className="text-sm opacity-80">Overall Performance Score</p>
                     </div>
                 </CardContent>
@@ -246,5 +246,3 @@ export default function TeacherDashboardPage() {
     </div>
   );
 }
-
-    
