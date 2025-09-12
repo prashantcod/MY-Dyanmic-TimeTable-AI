@@ -39,8 +39,8 @@ import {
   Users,
 } from 'lucide-react';
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -50,10 +50,10 @@ import {
 } from 'recharts';
 
 const chartData = [
-  { week: 'Week 1', thisMonth: 10, lastMonth: 4 },
-  { week: 'Week 2', thisMonth: 12, lastMonth: 7 },
-  { week: 'Week 3', thisMonth: 14, lastMonth: 6 },
-  { week: 'Week 4', thisMonth: 10, lastMonth: 8 },
+  { week: 'Week 1', thisMonth: 12, lastMonth: 8 },
+  { week: 'Week 2', thisMonth: 14, lastMonth: 10 },
+  { week: 'Week 3', thisMonth: 10, lastMonth: 6 },
+  { week: 'Week 4', thisMonth: 16, lastMonth: 12 },
 ];
 
 const agendaItems = [
@@ -206,15 +206,25 @@ export default function TeacherDashboardPage() {
                 </CardHeader>
                 <CardContent>
                     <ResponsiveContainer width="100%" height={300}>
-                        <LineChart data={chartData}>
+                       <AreaChart data={chartData}>
+                          <defs>
+                            <linearGradient id="colorThisMonth" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="hsl(var(--chart-1))" stopOpacity={0.4}/>
+                              <stop offset="95%" stopColor="hsl(var(--chart-1))" stopOpacity={0}/>
+                            </linearGradient>
+                            <linearGradient id="colorLastMonth" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="hsl(var(--chart-2))" stopOpacity={0.4}/>
+                              <stop offset="95%" stopColor="hsl(var(--chart-2))" stopOpacity={0}/>
+                            </linearGradient>
+                          </defs>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
                         <XAxis dataKey="week" tickLine={false} axisLine={false} />
-                        <YAxis tickFormatter={(value) => `${value}h`} tickLine={false} axisLine={false} />
+                        <YAxis tickFormatter={(value) => `${value}h`} tickLine={false} axisLine={false} domain={[0, 16]} ticks={[0, 4, 8, 12, 16]} />
                         <Tooltip contentStyle={{ borderRadius: 'var(--radius)', border: '1px solid hsl(var(--border))' }}/>
                         <Legend />
-                        <Line type="monotone" dataKey="thisMonth" stroke="var(--color-chart-1)" strokeWidth={2} name="This Month" dot={{ r: 4 }} activeDot={{ r: 6 }} />
-                        <Line type="monotone" dataKey="lastMonth" stroke="var(--color-chart-2)" strokeWidth={2} name="Last Month" dot={{ r: 4 }} activeDot={{ r: 6 }} />
-                        </LineChart>
+                        <Area type="monotone" dataKey="thisMonth" stroke="hsl(var(--chart-1))" fill="url(#colorThisMonth)" strokeWidth={2} name="This Month" dot={false} />
+                        <Area type="monotone" dataKey="lastMonth" stroke="hsl(var(--chart-2))" fill="url(#colorLastMonth)" strokeWidth={2} name="Last Month" dot={false} />
+                        </AreaChart>
                     </ResponsiveContainer>
                 </CardContent>
             </Card>
@@ -236,3 +246,5 @@ export default function TeacherDashboardPage() {
     </div>
   );
 }
+
+    
