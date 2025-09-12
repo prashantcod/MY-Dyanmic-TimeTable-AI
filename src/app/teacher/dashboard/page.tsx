@@ -139,7 +139,7 @@ export default function TeacherDashboardPage() {
                     </Avatar>
                     <div className="space-y-1">
                         
-                        <p className="text-sm opacity-80">Overall Performance Score</p>
+                        
                     </div>
                 </CardContent>
                 <CardFooter className="bg-black/10 p-4 rounded-b-lg">
