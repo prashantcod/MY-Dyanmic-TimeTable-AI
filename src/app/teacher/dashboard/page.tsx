@@ -51,9 +51,9 @@ import {
 
 const chartData = [
   { week: 'Week 1', thisMonth: 10, lastMonth: 4 },
-  { week: 'Week 2', thisMonth: 12, lastMonth: 5 },
+  { week: 'Week 2', thisMonth: 12, lastMonth: 7 },
   { week: 'Week 3', thisMonth: 14, lastMonth: 6 },
-  { week: 'Week 4', thisMonth: 10, lastMonth: 4 },
+  { week: 'Week 4', thisMonth: 10, lastMonth: 8 },
 ];
 
 const agendaItems = [
@@ -111,8 +111,8 @@ export default function TeacherDashboardPage() {
     <div className="flex flex-col gap-8 py-8">
        <div className="flex items-center justify-between">
             <div>
-                <h1 className="text-3xl font-bold">Welcome Back, {loggedInTeacher.name.split(' ')[1]} 👋</h1>
-                <p className="text-muted-foreground">Lorem ipsum dolor sit amet consectetur. Orci pulvinar.</p>
+                <h1 className="text-3xl font-bold">Welcome Back, {loggedInTeacher.name.split(' ')[0]} 👋</h1>
+                <p className="text-muted-foreground">Here's your teaching summary for the week.</p>
             </div>
             <Button variant="outline">
                 <Download className="mr-2" />
@@ -209,7 +209,7 @@ export default function TeacherDashboardPage() {
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
                         <XAxis dataKey="week" tickLine={false} axisLine={false} />
                         <YAxis tickFormatter={(value) => `${value}h`} tickLine={false} axisLine={false} />
-                        <Tooltip />
+                        <Tooltip contentStyle={{ borderRadius: 'var(--radius)', border: '1px solid hsl(var(--border))' }}/>
                         <Legend />
                         <Line type="monotone" dataKey="thisMonth" stroke="var(--color-chart-1)" strokeWidth={2} name="This Month" />
                         <Line type="monotone" dataKey="lastMonth" stroke="var(--color-chart-2)" strokeWidth={2} name="Last Month" />
