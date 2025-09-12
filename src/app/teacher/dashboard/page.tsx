@@ -143,13 +143,8 @@ export default function TeacherDashboardPage() {
                     </div>
                 </CardContent>
                 <CardFooter className="bg-black/10 p-4 rounded-b-lg">
-                    <div className="flex items-center justify-between w-full">
-                        <Button size="icon" variant="ghost" className="hover:bg-black/20"><ChevronLeft/></Button>
-                        <div className="text-center">
-                             <p className="text-4xl font-bold">86%</p>
-                             <p className="text-xs opacity-80 max-w-xs">Your Lesson Planning Score increased by 25% from the last month. Pretty good performance!</p>
-                        </div>
-                         <Button size="icon" variant="ghost" className="hover:bg-black/20"><ChevronRight/></Button>
+                     <div className="w-full text-center">
+                        <p className="font-semibold">Department of {loggedInTeacher.department}</p>
                     </div>
                 </CardFooter>
             </Card>
