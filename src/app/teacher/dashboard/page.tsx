@@ -121,7 +121,7 @@ export default function TeacherDashboardPage() {
             </Button>
        </div>
       
-       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column */}
             <Card className="col-span-1 flex flex-col justify-between bg-primary text-primary-foreground">
                 <CardHeader>
