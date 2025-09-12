@@ -6,6 +6,7 @@ import {
   Calendar,
   FileText,
   ClipboardCheck,
+  UserCheck,
 } from 'lucide-react';
 
 import {
@@ -73,6 +74,14 @@ export default function StudentLayout({children}: {children: React.ReactNode}) {
                         <Link href="/student/materials">
                             <FileText />
                             Materials
+                        </Link>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                    <SidebarMenuButton href="/student/attendance" asChild tooltip="View Attendance">
+                        <Link href="/student/attendance">
+                            <UserCheck />
+                            Attendance
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>

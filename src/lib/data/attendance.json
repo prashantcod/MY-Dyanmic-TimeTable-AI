@@ -1,0 +1,33 @@
+
+{
+  "attendance": [
+    {
+      "studentRollNumber": "CSE1Y001",
+      "courseCode": "CSE101",
+      "date": "2024-07-22",
+      "status": "Absent",
+      "facultyName": "Dr. Alan Turing"
+    },
+    {
+      "studentRollNumber": "CSE1Y001",
+      "courseCode": "CSE101",
+      "date": "2024-07-29",
+      "status": "Absent",
+      "facultyName": "Dr. Alan Turing"
+    },
+    {
+      "studentRollNumber": "CSE1Y001",
+      "courseCode": "PHY101",
+      "date": "2024-07-24",
+      "status": "Absent",
+      "facultyName": "Dr. Marie Curie"
+    },
+    {
+      "studentRollNumber": "CSE1Y002",
+      "courseCode": "CSE101",
+      "date": "2024-07-29",
+      "status": "Absent",
+      "facultyName": "Dr. Alan Turing"
+    }
+  ]
+}
