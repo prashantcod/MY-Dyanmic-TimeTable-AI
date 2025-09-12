@@ -143,8 +143,9 @@ export default function TeacherDashboardPage() {
                     </div>
                 </CardContent>
                 <CardFooter className="bg-black/10 p-4 rounded-b-lg">
-                     <div className="w-full text-center">
+                     <div className="w-full text-center space-y-1">
                         <p className="font-semibold">Department of {loggedInTeacher.department}</p>
+                        <p className="text-sm opacity-90">Assistant Professor</p>
                     </div>
                 </CardFooter>
             </Card>
