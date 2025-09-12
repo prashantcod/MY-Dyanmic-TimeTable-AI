@@ -29,13 +29,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TimetableResult } from '@/app/api/timetable/route';
 import { Loader2 } from 'lucide-react';
+import { format } from 'date-fns';
 
 // Helper type for course with category
 type CategorizedCourse = Course & { category: string };
 
 export default function StudentDashboardPage() {
   const studentAvatar = placeholderImages.find(img => img.id === 'user-avatar');
-  const { studentGroups, courses, loggedInStudent, timetable, setTimetable } = useDataStore();
+  const { studentGroups, courses, loggedInStudent, timetable, setTimetable, exams } = useDataStore();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -84,6 +85,7 @@ export default function StudentDashboardPage() {
   }, [myCourses]);
 
   const mySchedule = myGroup ? timetable.filter(entry => entry.studentGroup === myGroup.name) : [];
+  const myExams = myGroup ? exams.filter(exam => exam.studentGroup === myGroup.name) : [];
   
   if (!loggedInStudent || !myGroup) {
      return (
@@ -185,6 +187,45 @@ export default function StudentDashboardPage() {
           )}
         </CardContent>
       </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>My Exam Timetable</CardTitle>
+          <CardDescription>
+            Your upcoming exam schedule.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Date</TableHead>
+                <TableHead>Day</TableHead>
+                <TableHead>Time</TableHead>
+                <TableHead>Course Code</TableHead>
+                <TableHead>Course Name</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {myExams.map((exam) => (
+                <TableRow key={exam.courseCode}>
+                  <TableCell>{format(new Date(exam.date), 'PPP')}</TableCell>
+                  <TableCell>{exam.day}</TableCell>
+                  <TableCell>{exam.time}</TableCell>
+                  <TableCell>{exam.courseCode}</TableCell>
+                  <TableCell>{exam.courseName}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          {myExams.length === 0 && (
+            <div className="text-center p-12 text-muted-foreground">
+                <p>Your exam schedule has not been announced yet.</p>
+            </div>
+           )}
+        </CardContent>
+      </Card>
+
     </div>
   );
 }

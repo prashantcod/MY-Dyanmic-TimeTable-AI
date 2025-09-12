@@ -5,12 +5,14 @@ import { rooms as initialRooms } from './data/rooms.json';
 import { faculty as initialFaculty, Faculty } from './data/faculty.json';
 import { studentGroups as initialStudentGroups, StudentGroup as BaseStudentGroup, Student } from './data/students.json';
 import { assignments as initialAssignments } from './data/assignments.json';
+import { exams as initialExams } from './data/exams.json';
 import { ScheduleEntry } from '@/app/api/timetable/route';
 
 export type Course = (typeof initialCourses)[0] & { category?: string };
 export type Room = (typeof initialRooms)[0];
 export type StudentGroup = BaseStudentGroup & { program: string };
 export type Assignment = (typeof initialAssignments)[0];
+export type Exam = (typeof initialExams)[0];
 
 
 export type LoggedInStudent = Student & {
@@ -50,6 +52,7 @@ type DataStore = {
     faculty: Faculty[];
     studentGroups: StudentGroup[];
     assignments: Assignment[];
+    exams: Exam[];
     leaveRequests: LeaveRequest[];
     notifications: Notification[];
     timetable: ScheduleEntry[];
@@ -81,6 +84,7 @@ let dataStore: DataStore = {
         }))
     })) as StudentGroup[],
     assignments: initialAssignments,
+    exams: initialExams,
     timetable: [],
     loggedInStudent: null,
     recentGenerations: [

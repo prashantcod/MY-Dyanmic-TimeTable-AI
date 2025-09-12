@@ -1,0 +1,53 @@
+
+{
+  "exams": [
+    {
+      "courseCode": "CSE101",
+      "courseName": "Intro to Programming",
+      "date": "2024-12-10",
+      "day": "Tuesday",
+      "time": "09:00-12:00",
+      "studentGroup": "Computer Science - 1st Year"
+    },
+    {
+      "courseCode": "PHY101",
+      "courseName": "Introductory Physics",
+      "date": "2024-12-12",
+      "day": "Thursday",
+      "time": "09:00-12:00",
+      "studentGroup": "Computer Science - 1st Year"
+    },
+    {
+      "courseCode": "MATH101",
+      "courseName": "Calculus I",
+      "date": "2024-12-14",
+      "day": "Saturday",
+      "time": "09:00-12:00",
+      "studentGroup": "Computer Science - 1st Year"
+    },
+    {
+      "courseCode": "CSE201",
+      "courseName": "Data Structures",
+      "date": "2024-12-11",
+      "day": "Wednesday",
+      "time": "14:00-17:00",
+      "studentGroup": "Computer Science - 2nd Year"
+    },
+    {
+      "courseCode": "ECE205",
+      "courseName": "Digital Circuits",
+      "date": "2024-12-13",
+      "day": "Friday",
+      "time": "14:00-17:00",
+      "studentGroup": "Computer Science - 2nd Year"
+    },
+    {
+      "courseCode": "BEDU301",
+      "courseName": "Educational Psychology",
+      "date": "2024-12-10",
+      "day": "Tuesday",
+      "time": "09:00-12:00",
+      "studentGroup": "B.Ed - 3rd Year"
+    }
+  ]
+}
