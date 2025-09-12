@@ -35,37 +35,16 @@ type CategorizedCourse = Course & { category: string };
 
 export default function StudentDashboardPage() {
   const studentAvatar = placeholderImages.find(img => img.id === 'user-avatar');
-  const { studentGroups, timetable, courses, loggedInStudent, setTimetable } = useDataStore();
+  const { studentGroups, courses, loggedInStudent } = useDataStore();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchTimetable = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/timetable');
-      const result: TimetableResult = await response.json();
-      setTimetable(result.timetable);
-    } catch (error) {
-      console.error("Failed to fetch timetable", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+  
   useEffect(() => {
     // If no student is logged in, redirect to login page
     if (!loggedInStudent) {
       router.replace('/student/login');
       return; // Stop execution if not logged in
     }
-    
-    // Fetch timetable if it's not already loaded
-    if (timetable.length === 0) {
-        fetchTimetable();
-    } else {
-        setIsLoading(false);
-    }
-  }, [loggedInStudent, router, timetable.length]);
+  }, [loggedInStudent, router]);
 
   // Find the group the logged-in student belongs to
   const myGroup = studentGroups.find(group => group.name === loggedInStudent?.groupName);
@@ -87,8 +66,6 @@ export default function StudentDashboardPage() {
     }, {} as Record<string, CategorizedCourse[]>);
   }, [myCourses]);
 
-
-  const mySchedule = myGroup ? timetable.filter(entry => entry.studentGroup === myGroup.name) : [];
   
   // Display a loading/skeleton state if the user is not yet available
   if (!loggedInStudent || !myGroup) {
@@ -169,28 +146,6 @@ export default function StudentDashboardPage() {
             </CardContent>
         </Card>
       </div>
-
-       <Card>
-        <CardHeader>
-          <CardTitle>My Weekly Timetable</CardTitle>
-          <CardDescription>
-            Your personalized class schedule for the week.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-             <div className="flex h-[60vh] flex-col items-center justify-center gap-4 p-12 text-center">
-                <Loader2 className="size-12 animate-spin text-primary" />
-                <h3 className="text-lg font-semibold">Loading Timetable...</h3>
-                <p className="text-sm text-muted-foreground">
-                    Please wait while we fetch your schedule.
-                </p>
-            </div>
-          ) : (
-             <TimetableView schedule={mySchedule} />
-          )}
-        </CardContent>
-      </Card>
     </div>
   );
 }

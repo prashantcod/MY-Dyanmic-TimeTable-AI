@@ -53,8 +53,8 @@ export default function StudentLayout({children}: {children: React.ReactNode}) {
             </SidebarMenuItem>
              <SidebarGroup>
                  <SidebarMenuItem>
-                    <SidebarMenuButton href="/student/dashboard" asChild tooltip="View Timetable">
-                        <Link href="/student/dashboard">
+                    <SidebarMenuButton href="/student/timetable" asChild tooltip="View Timetable">
+                        <Link href="/student/timetable">
                             <Calendar />
                             My Timetable
                         </Link>
