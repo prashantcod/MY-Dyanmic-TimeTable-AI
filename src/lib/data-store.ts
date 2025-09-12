@@ -3,7 +3,7 @@
 import { courses as initialCourses } from './data/courses.json';
 import { rooms as initialRooms } from './data/rooms.json';
 import { faculty as initialFaculty, Faculty } from './data/faculty.json';
-import { studentGroups as initialStudentGroups, StudentGroup as BaseStudentGroup, Student } from './data/students.json';
+import { studentGroups as initialStudentGroups, StudentGroup as BaseStudentGroup, Student as BaseStudent } from './data/students.json';
 import { assignments as initialAssignments } from './data/assignments.json';
 import { exams as initialExams } from './data/exams.json';
 import { materials as initialMaterials } from './data/materials.json';
@@ -12,7 +12,8 @@ import { ScheduleEntry } from '@/app/api/timetable/route';
 
 export type Course = (typeof initialCourses)[0] & { category?: string };
 export type Room = (typeof initialRooms)[0];
-export type StudentGroup = BaseStudentGroup & { program: string };
+export type Student = BaseStudent & { abcId?: string };
+export type StudentGroup = BaseStudentGroup & { program: string; students?: Student[] };
 export type Assignment = (typeof initialAssignments)[0];
 export type Exam = (typeof initialExams)[0];
 export type Material = (typeof initialMaterials)[0];
@@ -83,10 +84,11 @@ let dataStore: DataStore = {
     faculty: [...initialFaculty],
     studentGroups: [...initialStudentGroups].map(group => ({
         ...group,
-        students: group.students?.map(student => ({
+        students: group.students?.map((student, index) => ({
             ...student,
             // Add a mock email to existing students for login to work
-            email: `${student.name.toLowerCase().replace(/\s/g, '.')}@university.edu`
+            email: `${student.name.toLowerCase().replace(/\s/g, '.')}@university.edu`,
+            abcId: `24-1560-1001-00${index + 1}`.slice(0, 19)
         }))
     })) as StudentGroup[],
     assignments: initialAssignments,

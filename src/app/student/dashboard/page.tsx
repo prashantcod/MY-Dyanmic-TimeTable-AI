@@ -73,6 +73,11 @@ export default function StudentDashboardPage() {
     ).filter(Boolean) as CategorizedCourse[] || [],
   [myGroup, courses]);
 
+  const totalCredits = useMemo(() => {
+    return myCourses.reduce((sum, course) => sum + (course.credits || 0), 0);
+  }, [myCourses]);
+
+
   const groupedCourses = useMemo(() => {
     return myCourses.reduce((acc, course) => {
       const category = course.category || 'Elective'; // Default to Elective if not specified
@@ -115,9 +120,15 @@ export default function StudentDashboardPage() {
               <CardDescription>{myGroup.program} - {myGroup.name.split(' - ')[1]}</CardDescription>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-2">
             <p className="text-sm text-muted-foreground">
               Roll Number: {loggedInStudent?.rollNumber || 'N/A'}
+            </p>
+            <p className="text-sm text-muted-foreground">
+                ABC ID: {loggedInStudent?.abcId || 'N/A'}
+            </p>
+            <p className="text-sm text-muted-foreground">
+                Semester Credits: <Badge variant="secondary">{totalCredits}</Badge>
             </p>
           </CardContent>
         </Card>
