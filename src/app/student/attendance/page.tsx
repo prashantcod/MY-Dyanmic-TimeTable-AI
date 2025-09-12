@@ -136,8 +136,8 @@ export default function StudentAttendancePage() {
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
-                                {course.absentRecords.map(record => (
-                                  <TableRow key={record.date}>
+                                {course.absentRecords.map((record, index) => (
+                                  <TableRow key={`${record.date}-${index}`}>
                                     <TableCell>{format(new Date(record.date), 'PPP')}</TableCell>
                                     <TableCell className="text-right font-medium opacity-50">{record.facultyName}</TableCell>
                                   </TableRow>
