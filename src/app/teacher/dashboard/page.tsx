@@ -126,7 +126,7 @@ export default function TeacherDashboardPage() {
             <Card className="col-span-1 flex flex-col justify-between bg-primary text-primary-foreground">
                 <CardHeader>
                     <CardTitle className="flex justify-between items-center">
-                        <span>Lecturer Performance</span>
+                        <span>Faculty Profile</span>
                          <Button variant="link" className="text-primary-foreground p-0 h-auto">See more</Button>
                     </CardTitle>
                 </CardHeader>
