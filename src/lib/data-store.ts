@@ -236,9 +236,10 @@ let dataStore: DataStore = {
         }
     },
     addLeaveRequest: (request) => {
+        const newId = `LR-${String(dataStore.leaveRequests.length + 1).padStart(3, '0')}`;
         const newRequest: LeaveRequest = {
             ...request,
-            id: `LR-${crypto.randomUUID()}`,
+            id: newId,
             status: 'pending'
         };
         dataStore.leaveRequests.push(newRequest);

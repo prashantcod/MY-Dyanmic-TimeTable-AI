@@ -34,10 +34,18 @@ export function OnLeaveDialog() {
   const [date, setDate] = React.useState<DateRange | undefined>();
   const [reason, setReason] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
-  const { addLeaveRequest } = useDataStore();
+  const { addLeaveRequest, loggedInTeacher } = useDataStore();
   const { toast } = useToast();
 
   const handleSubmit = () => {
+    if (!loggedInTeacher) {
+        toast({
+            variant: 'destructive',
+            title: 'Not Logged In',
+            description: 'You must be logged in to request leave.',
+        });
+        return;
+    }
     if (!date?.from || !reason) {
         toast({
             variant: 'destructive',
@@ -47,10 +55,9 @@ export function OnLeaveDialog() {
         return;
     }
     
-    // In a real app, you'd get the faculty ID from the logged-in user session
     addLeaveRequest({
-        facultyId: 'F002', // Hardcoded Dr. Grace Hopper for demo
-        facultyName: 'Dr. Grace Hopper',
+        facultyId: loggedInTeacher.id,
+        facultyName: loggedInTeacher.name,
         startDate: date.from,
         endDate: date.to || date.from,
         reason,
