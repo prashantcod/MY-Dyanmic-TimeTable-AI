@@ -48,6 +48,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { AssignedSubjectsCard } from '@/components/assigned-subjects-card';
 
 const chartData = [
   { week: 'Week 1', thisMonth: 12, lastMonth: 8 },
@@ -152,16 +153,7 @@ export default function TeacherDashboardPage() {
 
             {/* Right Column */}
             <div className="col-span-1 lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium">Assigned Subjects</CardTitle>
-                        <BookUser className="text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-3xl font-bold">{assignedCourses.length}</p>
-                        <p className="text-xs text-muted-foreground">Across all semesters</p>
-                    </CardContent>
-                </Card>
+                <AssignedSubjectsCard />
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">Total Students</CardTitle>
