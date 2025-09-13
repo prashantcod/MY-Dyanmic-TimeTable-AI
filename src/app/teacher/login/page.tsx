@@ -70,6 +70,7 @@ export default function TeacherLoginPage() {
                 email: registerEmail,
                 employeeId: registerEmployeeId,
                 department: registerDepartment,
+                expertise: ['CSE101', 'PHY101', 'MATH101'], // Assign default expertise
             };
 
             addFaculty(newFaculty);
@@ -165,5 +166,3 @@ export default function TeacherLoginPage() {
     </div>
   );
 }
-
-    

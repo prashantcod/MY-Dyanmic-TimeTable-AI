@@ -69,7 +69,7 @@ type DataStore = {
     recentGenerations: RecentGeneration[];
     loggedInStudent: LoggedInStudent | null;
     loggedInTeacher: LoggedInTeacher | null;
-    addFaculty: (faculty: Omit<Faculty, 'id' | 'availability' | 'expertise'>) => void;
+    addFaculty: (faculty: Partial<Faculty>) => void;
     addStudentGroup: (group: Omit<StudentGroup, 'id'>) => void;
     addStudentToGroup: (groupId: string, student: Student) => void;
     addLeaveRequest: (request: Omit<LeaveRequest, 'id' | 'status'>) => void;
@@ -86,7 +86,11 @@ type DataStore = {
 let dataStore: DataStore = {
     courses: initialCourses,
     rooms: initialRooms,
-    faculty: [...initialFaculty] as Faculty[],
+    faculty: [...initialFaculty].map(f => ({
+        ...f,
+        // Ensure every teacher has at least some expertise for demo purposes
+        expertise: f.expertise.length > 0 ? f.expertise : ['CSE101', 'PHY101', 'MATH101']
+    })) as Faculty[],
     studentGroups: [...initialStudentGroups] as StudentGroup[],
     assignments: initialAssignments,
     exams: initialExams,
@@ -207,10 +211,13 @@ let dataStore: DataStore = {
     ],
     addFaculty: (faculty) => {
         const newFaculty: Faculty = { 
-            ...faculty, 
             id: `F${String(dataStore.faculty.length + 1).padStart(3, '0')}`,
-            expertise: [],
-            availability: { Monday: [], Tuesday: [], Wednesday: [], Thursday: [], Friday: [] }
+            name: faculty.name || 'New Faculty',
+            email: faculty.email || '',
+            employeeId: faculty.employeeId || '',
+            department: faculty.department || 'General',
+            expertise: faculty.expertise || [],
+            availability: faculty.availability || { Monday: [], Tuesday: [], Wednesday: [], Thursday: [], Friday: [] }
         };
         dataStore.faculty.push(newFaculty);
     },
