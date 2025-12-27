@@ -128,7 +128,6 @@ Educational scheduling research inspirations
 Support
 If you find this project useful, please consider giving it a ⭐ on GitHub!
 
-markdown
 
 
 ---
